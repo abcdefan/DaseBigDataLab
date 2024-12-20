@@ -47,17 +47,17 @@ Spark启动命令
 MapReduce启动命令
 ```sql
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
-  -files /home/dase-dis/wst_test/mapreduce_cnt.py \
-  -mapper "python3 mapreduce_cnt.py mapper" \
-  -reducer "python3 mapreduce_cnt.py reducer" \
-  -input /user/dase-dis/ch_input_1.txt \
-  -output /user/dase-dis/ch_input_1_output_mr \
-  -numReduceTasks 2 \
-  -D mapreduce.map.memory.mb=1024 \
-  -D mapreduce.reduce.memory.mb=1024 \
-  -D mapreduce.map.cpu.vcores=1 \
-  -D mapreduce.reduce.cpu.vcores=1 \
-  -D mapreduce.job.reduces=2
+        -D mapreduce.map.memory.mb=1024 \
+        -D mapreduce.reduce.memory.mb=1024 \
+        -D mapreduce.map.cpu.vcores=1 \
+        -D mapreduce.reduce.cpu.vcores=1 \
+        -D mapreduce.job.reduces=2 \
+        -files /home/dase-dis/wst_test/mapreduce_cnt.py \
+        -mapper "python3 mapreduce_cnt.py mapper" \
+        -reducer "python3 mapreduce_cnt.py reducer" \
+        -input /user/dase-dis/ch_input_1.txt \
+        -output /user/dase-dis/ch_input_1_output_mr \
+        -numReduceTasks 2
 ```
 ## 执行时间
 
@@ -164,6 +164,42 @@ CPU
 IO
 
 ![](./spark_input3_res/disk_io.png)
+
+### MapReduce
+#### Input1
+CPU
+![cpu_usage.png](./mr_input1_res/cpu_usage.png)
+IO
+![cpu_usage.png](./mr_input1_res/disk_io.png)
+
+内存
+![cpu_usage.png](./mr_input1_res/memory_usage.png)
+
+#### Input2
+CPU
+![cpu_usage.png](./mr_input2_res/cpu_usage.png)
+IO
+![cpu_usage.png](./mr_input2_res/disk_io.png)
+
+内存
+![cpu_usage.png](./mr_input2_res/memory_usage.png)
+
+#### Input3
+CPU
+![cpu_usage.png](./mr_input3_res/cpu_usage.png)
+IO
+![cpu_usage.png](./mr_input3_res/disk_io.png)
+内存
+![cpu_usage.png](./mr_input3_res/memory_usage.png)
+
+## 分工
+张志凡：数据集准备、实验设计、环境搭建及PPT制作
+
+郑舒岩：环境搭建、实验设计、程序编写、运行调试
+
+张文宇：实验程序编写、信息收集、运行调试
+
+王思腾：实验程序编写、信息收集、运行调试
 
 ## Spark其它信息
 ### Input1
