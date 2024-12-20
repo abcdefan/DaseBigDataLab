@@ -23,8 +23,42 @@
 
 ## 实验环境
 
+## Spark和MapReduce资源配置
 
+| 资源类型 | Spark | MapReduce |
+|---------|--------|------------|
+| CPU核心数 | 2 | 2 |
+| 单任务内存 | 1g | 1024MB |
+| 总内存 | 2g | 2g |
+| 任务数量 | 2 | Map: 由输入决定<br>Reduce: 2 (可并行) |
 
+Spark启动命令
+```sql
+/usr/local/spark/bin/spark-submit \
+  --master spark://10.24.1.114:7077 \
+  --driver-memory 1g \
+  --executor-memory 1g \
+  --total-executor-cores 2 \
+  /home/dase-dis/wst_test/spark_cnt.py \
+  /user/dase-dis/ch_input_2.txt \
+  /user/dase-dis/ch_input_2_output
+```
+
+MapReduce启动命令
+```sql
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
+  -files /home/dase-dis/wst_test/mapreduce_cnt.py \
+  -mapper "python3 mapreduce_cnt.py mapper" \
+  -reducer "python3 mapreduce_cnt.py reducer" \
+  -input /user/dase-dis/ch_input_1.txt \
+  -output /user/dase-dis/ch_input_1_output_mr \
+  -numReduceTasks 2 \
+  -D mapreduce.map.memory.mb=1024 \
+  -D mapreduce.reduce.memory.mb=1024 \
+  -D mapreduce.map.cpu.vcores=1 \
+  -D mapreduce.reduce.cpu.vcores=1 \
+  -D mapreduce.job.reduces=2
+```
 ## 执行时间
 
 ### spark
