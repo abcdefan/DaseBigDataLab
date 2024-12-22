@@ -59,6 +59,30 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
         -output /user/dase-dis/ch_input_1_output_mr \
         -numReduceTasks 2
 ```
+## 实验细节
+```sql
+步骤1：初始化环境
+确保Spark和MapReduce分布式环境已正确配置，能够正常运行作业。
+
+步骤2：导入数据集
+导入3个不同规模的数据集，模拟不同工作负载。
+
+步骤3：定义计算任务
+使用Spark脚本和MapReduce脚本分别执行词频统计排序任务。
+Spark：
+    读取输入文件，使用 split 和 explode 操作分割单词。
+    过滤空字符串，统计词频，按词频降序排序。
+MapReduce：
+    使用 mapper 函数分词并输出词频对。
+    使用 reducer 函数汇总词频并按词频排序。
+步骤4：执行实验
+    对每个数据集分别在Spark和MapReduce上执行3次实验，获取平均运行时间。
+步骤5：资源监控
+使用Linux系统的 glances 工具监控CPU、内存和磁盘的使用情况。
+
+步骤6：分析结果
+对比Spark和MapReduce在不同数据集规模下的运行时间,分析资源使用情况，评估Spark和MapReduce的性能差异。
+```
 ## 执行时间
 
 ### spark
@@ -192,6 +216,21 @@ CPU
 ![cpu_usage.png](./mr_input3_res/memory_usage.png)
 IO
 ![cpu_usage.png](./mr_input3_res/disk_io.png)
+## 性能差异分析
+### 数据流优化方面:
+Spark脚本中的操作链 read → split → explode → filter → groupBy → orderBy 会被优化成一个DAG,Spark可以自动进行stage合并和pipeline优化
+
+MapReduce脚本必须严格遵循mapper(分词) → shuffle → reducer(汇总)的模式,中间结果必须写入磁盘
+
+### 存储机制方面:
+Spark的DataFrame API和RDD设计允许将中间结果缓存在内存中，而不是写入磁盘。这显著减少了I/O开销，特别是在需要多次访问中间结果的场景（如 groupBy 和 orderBy）。
+
+MapReduce的中间结果必须写入磁盘，因为 mapper的输出需要通过标准输出（stdout）写出，而 reducer需要通过标准输入（stdin）读入。这种设计导致大量I/O操作，成为性能瓶颈。
+### API表达力方面:
+Spark提供了高级API如explode, groupBy, orderBy等,代码更简洁直观
+
+MapReduce需要手动实现排序、计数等逻辑,代码较为底层
+
 ## 分工
 张志凡：数据集准备、实验设计、环境搭建及PPT制作
 
