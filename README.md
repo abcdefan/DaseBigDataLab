@@ -169,29 +169,29 @@ IO
 #### Input1
 CPU
 ![cpu_usage.png](./mr_input1_res/cpu_usage.png)
-IO
-![cpu_usage.png](./mr_input1_res/disk_io.png)
+
 
 内存
 ![cpu_usage.png](./mr_input1_res/memory_usage.png)
-
+IO
+![cpu_usage.png](./mr_input1_res/disk_io.png)
 #### Input2
 CPU
 ![cpu_usage.png](./mr_input2_res/cpu_usage.png)
-IO
-![cpu_usage.png](./mr_input2_res/disk_io.png)
+
 
 内存
 ![cpu_usage.png](./mr_input2_res/memory_usage.png)
-
+IO
+![cpu_usage.png](./mr_input2_res/disk_io.png)
 #### Input3
 CPU
 ![cpu_usage.png](./mr_input3_res/cpu_usage.png)
-IO
-![cpu_usage.png](./mr_input3_res/disk_io.png)
+
 内存
 ![cpu_usage.png](./mr_input3_res/memory_usage.png)
-
+IO
+![cpu_usage.png](./mr_input3_res/disk_io.png)
 ## 分工
 张志凡：数据集准备、实验设计、环境搭建及PPT制作
 
