@@ -88,30 +88,29 @@ MapReduce：
 ### spark
 
 #### Input1
-
 ```JavaScript
-Iteration 1 execution time: 19 seconds
-Iteration 2 execution time: 20 seconds
-Iteration 3 execution time: 20 seconds
-Average execution time for ch_input_1: 19.6 seconds
+Iteration 1 execution time: 43.55 seconds
+Iteration 2 execution time: 43.54 seconds
+Iteration 3 execution time: 43.11 seconds
+Average execution time for ch_input_1: 43.40 seconds
 ```
 
 #### Input2
 
 ```JavaScript
-Iteration 1 execution time: 42 seconds
-Iteration 2 execution time: 42 seconds
-Iteration 3 execution time: 41 seconds
-Average execution time for ch_input_2: 41.6 seconds
+Iteration 1 execution time: 128.06 seconds
+Iteration 2 execution time: 127.08 seconds
+Iteration 3 execution time: 127.56 seconds
+Average execution time for ch_input_2: 127.57 seconds
 ```
 
 #### Input3
 
 ```JavaScript
-Iteration 1 execution time: 114 seconds
-Iteration 2 execution time: 115 seconds
-Iteration 3 execution time: 114 seconds
-Average execution time for ch_input_3: 114.3 seconds
+Iteration 1 execution time: 459.98 seconds
+Iteration 2 execution time: 464.54 seconds
+Iteration 3 execution time: 458.04 seconds
+Average execution time for ch_input_3: 460.86 seconds
 ```
 
 ### MapReduce
